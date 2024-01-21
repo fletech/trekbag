@@ -1,8 +1,12 @@
 const secondaryButtons = [
-  { type: "secondary", text: "Mark all as complete" },
-  { type: "secondary", text: "Mark all as incomplete" },
-  { type: "secondary", text: "Reset to initial" },
-  { type: "secondary", text: "Remove all items" },
+  { type: "secondary", action: "COMPLETE_ALL", text: "Mark all as complete" },
+  {
+    type: "secondary",
+    action: "INCOMPLETE_ALL",
+    text: "Mark all as incomplete",
+  },
+  { type: "secondary", action: "INITIAL", text: "Reset to initial" },
+  { type: "secondary", action: "REMOVE_ALL", text: "Remove all items" },
 ];
 
 const initialItems = [

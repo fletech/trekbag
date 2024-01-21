@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import ButtonCustom from "./ButtonCustom";
 
-export default function AddItemForm({ setItems }) {
+export default function AddItemForm({ onAddItem }) {
   const [itemValue, setItemValue] = useState("");
   const [buttonDisabled, setButtonDisabled] = useState(itemValue == 0);
   const inputRef = useRef();
@@ -22,14 +22,7 @@ export default function AddItemForm({ setItems }) {
       return;
     }
 
-    const newItem = {
-      id: new Date().getTime().toString(),
-      name: itemValue,
-      packed: false,
-    };
-    setItems((prevItems) => {
-      return [...prevItems, newItem];
-    });
+    onAddItem(itemValue);
     setItemValue("");
     inputRef.current.focus();
   };
@@ -44,7 +37,9 @@ export default function AddItemForm({ setItems }) {
         autoFocus
         ref={inputRef}
       />
-      <ButtonCustom buttonDisabled={buttonDisabled}>Add to list</ButtonCustom>
+      <ButtonCustom buttonDisabled={buttonDisabled} onClick={() => null}>
+        Add to list
+      </ButtonCustom>
     </form>
   );
 }
