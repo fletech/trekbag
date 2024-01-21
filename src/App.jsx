@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BackgroundHeading from "./components/BackgroundHeading";
 import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
@@ -7,7 +7,14 @@ import Header from "./components/Header";
 import { initialItems } from "./lib/data";
 
 function App() {
-  const [items, setItems] = useState(initialItems);
+  const [items, setItems] = useState(
+    () => JSON.parse(localStorage.getItem("items")) || initialItems
+  );
+
+  const totalNumberOfItems = items.length;
+  const numberOfItemsPacked = items.filter((item) => item.packed).length;
+
+  const isListEmpty = items.length === 0;
 
   const handleAddItem = (newItemValue) => {
     const newItem = {
@@ -48,11 +55,18 @@ function App() {
     setItems(newItems);
   };
 
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(items));
+  });
+
   return (
     <>
       <BackgroundHeading />
       <main>
-        <Header />
+        <Header
+          numberOfItemsPacked={numberOfItemsPacked}
+          totalNumberOfItems={totalNumberOfItems}
+        />
         <ItemList
           items={items}
           handleDeleteItem={handleDeleteItem}
@@ -63,6 +77,7 @@ function App() {
           handleResetToInitial={handleResetToInitial}
           handleRemoveAllItems={handleRemoveAllItems}
           handleMarkAllItemsAs={handleMarkAllItemsAs}
+          isListEmpty={isListEmpty}
         />
       </main>
       <Footer />

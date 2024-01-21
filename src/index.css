@@ -75,6 +75,10 @@ header {
   font-size: 14px;
 }
 
+.counter-span {
+  margin-left: 5px;
+}
+
 .item-list {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
@@ -265,10 +269,10 @@ form > input::placeholder {
 
 h1 {
   font-size: 128px;
-  font-weight: 600;
+  font-weight: 700;
   color: rgba(0, 0, 0, 0.05);
   position: absolute;
-  top: 7.5%;
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
   z-index: -1;
@@ -284,7 +288,7 @@ h1 {
 
 @media (max-height: 916px) {
   h1 {
-    top: 3.5%;
+    top: 2%;
   }
 }
 

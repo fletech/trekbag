@@ -6,15 +6,19 @@ export default function Sidebar({
   handleRemoveAllItems,
   handleResetToInitial,
   handleMarkAllItemsAs,
+  isListEmpty,
 }) {
   return (
     <div className="sidebar">
       <AddItemForm onAddItem={handleAddItem} />
-      <ButtonGroup
-        handleRemoveAllItems={handleRemoveAllItems}
-        handleResetToInitial={handleResetToInitial}
-        handleMarkAllItemsAs={handleMarkAllItemsAs}
-      />
+
+      {!isListEmpty && (
+        <ButtonGroup
+          handleRemoveAllItems={handleRemoveAllItems}
+          handleResetToInitial={handleResetToInitial}
+          handleMarkAllItemsAs={handleMarkAllItemsAs}
+        />
+      )}
     </div>
   );
 }

@@ -1,7 +1,12 @@
-export default function Counter() {
+export default function Counter({ numberOfItemsPacked, totalNumberOfItems }) {
+  const allItemsPacked = numberOfItemsPacked === totalNumberOfItems;
+  if (totalNumberOfItems === 0) {
+    return null;
+  }
   return (
     <p>
-      <b>1</b> / 3 packed
+      <b>{numberOfItemsPacked}</b> / {totalNumberOfItems} packed
+      {allItemsPacked ? " ✅" : null}
     </p>
   );
 }

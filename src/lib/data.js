@@ -14,4 +14,10 @@ const initialItems = [
   { id: 2, name: "passport", packed: false },
   { id: 3, name: "thootbrush", packed: false },
 ];
-export { secondaryButtons, initialItems };
+
+const sortingOptions = [
+  { value: "default", label: "Sort by default" },
+  { value: "packed", label: "Sort by packed" },
+  { value: "unpacked", label: "Sort by unpacked" },
+];
+export { secondaryButtons, initialItems, sortingOptions };
