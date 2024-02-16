@@ -1,3 +1,5 @@
+import React from "react";
+
 import ButtonCustom from "./ButtonCustom";
 import { secondaryButtons } from "../lib/data";
 import { useItemsStore } from "../stores/itemsStore";
@@ -6,7 +8,7 @@ export default function ButtonGroup() {
   const markAllItemsAs = useItemsStore((state) => state.markAllItemsAs);
   const removeAllItems = useItemsStore((state) => state.removeAllItems);
   const resetToInitial = useItemsStore((state) => state.resetToInitial);
-  const actionChecker = (action) => {
+  const actionChecker = (action: string) => {
     switch (action) {
       case "COMPLETE_ALL":
         return () => markAllItemsAs(true);
@@ -29,6 +31,7 @@ export default function ButtonGroup() {
           <ButtonCustom
             key={button.text}
             type={button.type}
+            buttonDisabled={button.disabled}
             onClick={button.handler}
           >
             {button.text}
