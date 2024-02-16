@@ -1,25 +1,26 @@
 import ButtonCustom from "./ButtonCustom";
 import { secondaryButtons } from "../lib/data";
+import { useItemsStore } from "../stores/itemsStore";
 
-export default function ButtonGroup({
-  handleRemoveAllItems,
-  handleResetToInitial,
-  handleMarkAllItemsAs,
-}) {
+export default function ButtonGroup() {
+  const markAllItemsAs = useItemsStore((state) => state.markAllItemsAs);
+  const removeAllItems = useItemsStore((state) => state.removeAllItems);
+  const resetToInitial = useItemsStore((state) => state.resetToInitial);
   const actionChecker = (action) => {
     switch (action) {
       case "COMPLETE_ALL":
-        return () => handleMarkAllItemsAs(true);
+        return () => markAllItemsAs(true);
       case "INCOMPLETE_ALL":
-        return () => handleMarkAllItemsAs(false);
+        return () => markAllItemsAs(false);
       case "INITIAL":
-        return handleResetToInitial;
+        return resetToInitial;
       case "REMOVE_ALL":
-        return handleRemoveAllItems;
+        return removeAllItems;
       default:
         return null;
     }
   };
+
   return (
     <section className="button-group">
       {secondaryButtons.map((button) => {
